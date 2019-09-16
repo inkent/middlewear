@@ -7,9 +7,11 @@ const port = 3000
 app.use(bodyParser.json())
 
 app.post('/', (req, res) => {
-	const response = req.body 
+
+	if(req.body){
+const response = req.body 
 	const payload = {
-    'api_key': '5b7e2585-d348-11e9-be00-06b4694bee2a',
+    'api_key': req.body.key,
     'email_address': req.body.email,
     'fields': {
         'FirstName': req.body.firstName,
@@ -26,9 +28,14 @@ axios.post(req.body.url,payload)
 })
 .catch(err => {
 	// console.log("responded with",err)
-	res.status(400).send('Something is Wrong With The Email ')
+	res.status(400).send('Something is Wrong With The Email')
 })
 
+
+	} else {
+		res.status(400).send('Invalid Request')
+	}
+	
 
 })
 
