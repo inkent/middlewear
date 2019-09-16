@@ -6,7 +6,7 @@ const port = 3000
 
 app.use(bodyParser.json())
 
-app.post('/', (req, res) => {
+app.post('/mid', (req, res) => {
 
 	if(req.body){
 const response = req.body 
