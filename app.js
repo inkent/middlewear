@@ -15,7 +15,7 @@ console.log = function(d) { //
   log_stdout.write(util.format(d) + '\n');
 };
 
-var allowedOrigins = ['http://localhost:3000',
+var allowedOrigins = ['http://localhost:3000','http://localhost:8000',
                       'https://solarismusicfestival.com','http://solarismusicfestival.com','http://winkcannabis.com','https://winkcannabis.com','https://sofiayorkville.com'];
 app.use(cors({
   origin: function(origin, callback){
