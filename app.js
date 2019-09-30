@@ -56,7 +56,7 @@ const response = req.body
 
 
 
-axios.post(req.body.url,payload)
+axios.post("https://emailoctopus.com/api/1.5/lists/0d1a3c35-d003-11e9-9307-06b4694bee2a/contacts",payload)
 .then(e => {
   console.log("message",e)
 	res.status(200).send('Thank You For Subscribing')
