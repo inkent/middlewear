@@ -16,6 +16,10 @@ console.log = function(d) { //
 
 app.use(bodyParser.json())
 
+app.get('/mid',(err,req,res,next) => {
+	res.send('system is running')
+})
+
 app.post('/mid', (req, res) => {
 console.log(req.body)
 	if(req.body){
