@@ -4,10 +4,20 @@ const axios = require('axios');
 const app = express()
 const port = 3000
 
+var fs = require('fs');
+var util = require('util');
+var log_file = fs.createWriteStream(__dirname + '/debug.log', {flags : 'w'});
+var log_stdout = process.stdout;
+
+console.log = function(d) { //
+  log_file.write(util.format(d) + '\n');
+  log_stdout.write(util.format(d) + '\n');
+};
+
 app.use(bodyParser.json())
 
 app.post('/mid', (req, res) => {
-
+console.log(req.body)
 	if(req.body){
 const response = req.body 
 	const payload = {
