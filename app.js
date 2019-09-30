@@ -58,10 +58,11 @@ const response = req.body
 
 axios.post(req.body.url,payload)
 .then(e => {
+  console.log("message",e)
 	res.status(200).send('Thank You For Subscribing')
 })
 .catch(err => {
-	// console.log("responded with",err)
+	console.log("responded with",err)
 	res.status(400).send('Something is Wrong With The Email')
 })
 
