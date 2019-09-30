@@ -53,4 +53,16 @@ axios.post(req.body.url,payload)
 
 })
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
+
+module.exports = app;
+
+// app.listen(port, () => console.log(`Example app listening on port ${port}!`))
