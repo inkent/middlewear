@@ -16,11 +16,11 @@ console.log = function(d) { //
 
 app.use(bodyParser.json())
 
-app.get('/mid',(err,req,res,next) => {
-	res.send('system is running')
+app.get('/', function (req, res) {
+  res.send('GET request to the homepage')
 })
 
-app.post('/mid', (req, res) => {
+app.post('/mid', function (req, res) {
 console.log(req.body)
 	if(req.body){
 const response = req.body 
