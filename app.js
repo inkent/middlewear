@@ -1,5 +1,6 @@
 const express = require('express')
 var bodyParser = require('body-parser')
+var cors = require('cors');
 const axios = require('axios');
 const app = express()
 const port = 3000
@@ -14,7 +15,26 @@ console.log = function(d) { //
   log_stdout.write(util.format(d) + '\n');
 };
 
+var allowedOrigins = ['http://localhost:3000',
+                      'https://solarismusicfestival.com','http://solarismusicfestival.com','http://winkcannabis.com','https://winkcannabis.com','https://sofiayorkville.com'];
+app.use(cors({
+  origin: function(origin, callback){
+    // allow requests with no origin 
+    // (like mobile apps or curl requests)
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){
+      var msg = 'The CORS policy for this site does not ' +
+                'allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
+
+
 app.use(bodyParser.json())
+
+
 
 app.get('/', function (req, res) {
   res.send('GET request to the homepage')
@@ -63,6 +83,6 @@ if (app.get('env') === 'development') {
   });
 }
 
-module.exports = app;
+// module.exports = app;
 
-// app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
